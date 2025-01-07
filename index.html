@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Around EE.UU</title>
+    <meta
+      name="description"
+      content="This is an interactive web where the users can add, remove and like some photos."
+    />
+    <meta name="author" content="laura-ochoa" />
+    <meta name="keywords" content="tripleten, interactive web page, around us, explorador" />
+    <link rel="stylesheet" href="./vendor/fonts.css" />
+
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img class="header__vector" src="./images/Vector.png" alt="around US" />
+        <img class="header__line" src="./images/Line.png" alt="line" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img class="profile__avatar" src="./images/avatar.png" alt="Jacques photo" />
+          <div class="profile__info">
+            <div>
+              <p class="profile__info-name">Jacques Cousteau</p>
+              <img
+                class="profile__edit-button"
+                src="./images/Edit Button.png"
+                alt="Icono editar perfil"
+                id="edit-button"
+              />
+            </div>
+            <p class="profile__info-ocupation">Explorador</p>
+            <img src="./images/Add Button.png" alt="icono adicionar informacion" class="profile__add-button" />
+          </div>
+        </section>
+        <section class="elements">
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto1.jpeg" alt="Yosemite" />
+
+            <div class="elements__content">
+              <p class="elements__title">Valle de Yosemite</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto2.jpeg" alt="Lago Louise" />
+            <div class="elements__content">
+              <p class="elements__title">Lago Louise</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto3.jpeg" alt="Montanas calvas" />
+            <div class="elements__content">
+              <p class="elements__title">Montanas Calvas</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto4.jpeg" alt="Latemar" />
+            <div class="elements__content">
+              <p class="elements__title">Latemar</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto5.jpeg" alt="Vanois National" />
+            <div class="elements__content">
+              <p class="elements__title">Vanois National Park</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+          <div class="elements__card">
+            <img class="elements__card-photo" src="./images/7foto6.jpeg" alt="Lago di Braies" />
+            <div class="elements__content">
+              <p class="elements__title">Lago di Braies</p>
+              <img class="element__like-button" src="./images/Group.png" alt="Boton like" />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2024 Around The U.S.</p>
+      </footer>
+    </div>
+    <dialog class="popup">
+      <div class="popup__overlay"></div>
+      <div>
+        <form class="popup__form">
+          <fieldset class="popup__fieldset">
+            <button type="button" class="popup__close-button" id="close-button">
+              <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+            </button>
+            <h2 class="popup__title">Editar perfil</h2>
+            <input type="text" class="popup__input" placeholder="Nombre" id="name" required />
+            <input type="text" class="popup__input" placeholder="Acerca de mi" id="about" required />
+          </fieldset>
+          <button class="popup__save-button" type="submit">Guardar</button>
+        </form>
+      </div>
+    </dialog>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
