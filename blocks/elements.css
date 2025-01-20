@@ -44,13 +44,13 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.element__content-likebutton {
+.elements__like-button {
   background-color: white;
   padding-top: 5px;
   height: 19px;
   width: 21px;
 }
-.element__content-likebutton:hover {
+.elements__like-button:hover {
   opacity: 0.7;
   border: none;
 }
@@ -98,7 +98,7 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  .element__content-likebutton {
+  .elements__like-button {
     background-color: white;
     padding-top: 5px;
     height: 19px;
