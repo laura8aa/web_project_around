@@ -1,8 +1,8 @@
 .profile {
   display: flex;
-  width: 100%;
+  max-width: 880px;
   justify-content: flex-start;
-  margin-left: 200px;
+  margin: 0 auto;
   align-items: flex-end;
 }
 .profile__avatar {
@@ -26,6 +26,8 @@
   line-height: 48px;
   justify-content: center;
   margin-left: 30px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
 }
 .profile__info-ocupation {
   font-family: Inter;
@@ -36,11 +38,8 @@
   margin-top: 0px;
 }
 .profile__add-button {
-  position: absolute;
   cursor: pointer;
-
-  top: 194px;
-  right: 477px;
+  margin-left: 40px;
 }
 
 .profile__edit-button {
@@ -48,15 +47,17 @@
   color: #ffffff;
   width: 24px;
   height: 24px;
-  position: absolute;
-  top: 196px;
-  left: 943px;
+  margin-top: 16px;
+  margin-left: -50px;
 }
 
 .profile__edit-button:hover {
   opacity: 0.7;
 }
 
+.profile__add-button:hover {
+  opacity: 0.7;
+}
 @media screen and (max-width: 320px) {
   .profile {
     display: grid;
@@ -98,8 +99,8 @@
   }
   .profile__add-button {
     position: absolute;
-    top: 362px;
-    right: 20px;
+    top: 380px;
+    right: 18px;
     width: 282px;
     height: 50px;
     margin: auto;
@@ -112,11 +113,15 @@
     width: 18px;
     height: 18px;
     position: absolute;
-    top: 318px;
-    left: 251px;
+    top: 305px;
+    right: 55px;
   }
 
   .profile__edit-button:hover {
+    opacity: 0.7;
+  }
+
+  .profile__add-button:hover {
     opacity: 0.7;
   }
 }

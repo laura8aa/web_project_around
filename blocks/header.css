@@ -13,10 +13,10 @@
 @media screen and (max-width: 320px) {
   .header {
     max-width: 320px;
-    margin-left: 23px;
   }
   .header__vector {
     margin-top: 45px;
+    margin-left: 23px;
   }
   .header__line {
     margin-top: 41px;

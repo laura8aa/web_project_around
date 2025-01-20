@@ -24,17 +24,22 @@
         <section class="profile">
           <img class="profile__avatar" src="./images/avatar.png" alt="Jacques photo" />
           <div class="profile__info">
+            <p id="profile-name" class="profile__info-name">Jacques Cousteau</p>
+            <img
+              class="profile__edit-button"
+              src="./images/Edit Button.png"
+              alt="Icono editar perfil"
+              id="edit-button"
+            />
             <div>
-              <p class="profile__info-name">Jacques Cousteau</p>
               <img
-                class="profile__edit-button"
-                src="./images/Edit Button.png"
-                alt="Icono editar perfil"
-                id="edit-button"
+                src="./images/Add Button.png"
+                alt="icono adicionar informacion"
+                class="profile__add-button"
+                id="add-button"
               />
             </div>
-            <p class="profile__info-ocupation">Explorador</p>
-            <img src="./images/Add Button.png" alt="icono adicionar informacion" class="profile__add-button" />
+            <p id="profile-info" class="profile__info-ocupation">Explorador</p>
           </div>
         </section>
         <section class="elements">
@@ -87,22 +92,19 @@
         <p class="footer__copyright">© 2024 Around The U.S.</p>
       </footer>
     </div>
-    <dialog class="popup">
-      <div class="popup__overlay"></div>
-      <div>
-        <form class="popup__form">
-          <fieldset class="popup__fieldset">
-            <button type="button" class="popup__close-button" id="close-button">
-              <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
-            </button>
-            <h2 class="popup__title">Editar perfil</h2>
-            <input type="text" class="popup__input" placeholder="Nombre" id="name" required />
-            <input type="text" class="popup__input" placeholder="Acerca de mi" id="about" required />
-          </fieldset>
-          <button class="popup__save-button" type="submit">Guardar</button>
-        </form>
-      </div>
-    </dialog>
+    <div class="popup" id="popup">
+      <form class="popup__form">
+        <fieldset class="popup__fieldset">
+          <button type="button" class="popup__close-button" id="close-button">
+            <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+          </button>
+          <h2 class="popup__title">Editar perfil</h2>
+          <input type="text" class="popup__input" placeholder="Nombre" id="name" required />
+          <input type="text" class="popup__input" placeholder="Acerca de mi" id="about" required />
+        </fieldset>
+        <button id="save" class="popup__save-button" type="submit">Guardar</button>
+      </form>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
