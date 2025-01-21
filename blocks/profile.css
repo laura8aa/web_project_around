@@ -17,6 +17,9 @@
   text-align: left;
   margin-top: auto;
   margin-bottom: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__info {
@@ -36,6 +39,9 @@
   line-height: 21.78px;
   margin-bottom: 71px;
   margin-top: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__add-button {
   cursor: pointer;

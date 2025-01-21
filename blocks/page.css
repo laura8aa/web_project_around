@@ -2,7 +2,6 @@
   font-family: "inter", Arial, sans-serif;
   background-color: #000000;
   color: white;
-  margin: 0 auto;
   max-width: 1280px;
 }
 @media screen and (max-width: 320px) {
@@ -11,6 +10,5 @@
     font-family: "inter", Arial, sans-serif;
     background-color: #000000;
     color: white;
-    margin: 0 auto;
   }
 }

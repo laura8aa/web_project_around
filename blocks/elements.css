@@ -6,13 +6,20 @@
   grid-template-rows: repeat(2, 1fr);
   column-gap: 17px;
   row-gap: 21px;
-  margin: 36px 200px;
+  margin: auto;
 }
 .elements__card {
   width: 282px;
-
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
   border-radius: 10px 0px 0px 0px;
   box-shadow: 0px 0px 25px 0px #00000026;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .elements__card-photo {
   width: 282px;
