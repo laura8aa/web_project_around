@@ -49,6 +49,7 @@
             <div class="elements__content">
               <p class="elements__title">Valle de Yosemite</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
           <div class="elements__card">
@@ -56,6 +57,7 @@
             <div class="elements__content">
               <p class="elements__title">Lago Louise</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
           <div class="elements__card">
@@ -63,6 +65,7 @@
             <div class="elements__content">
               <p class="elements__title">Montanas Calvas</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
           <div class="elements__card">
@@ -70,6 +73,7 @@
             <div class="elements__content">
               <p class="elements__title">Latemar</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
           <div class="elements__card">
@@ -77,6 +81,7 @@
             <div class="elements__content">
               <p class="elements__title">Vanois National Park</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
           <div class="elements__card">
@@ -84,6 +89,7 @@
             <div class="elements__content">
               <p class="elements__title">Lago di Braies</p>
               <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
+              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
             </div>
           </div>
         </section>
@@ -103,6 +109,20 @@
           <input type="text" class="popup__input" placeholder="Acerca de mi" id="about" required />
         </fieldset>
         <button id="save" class="popup__save-button" type="submit">Guardar</button>
+      </form>
+    </div>
+
+    <div class="popup__new-place" id="popup__new-place">
+      <form class="popup__form">
+        <fieldset class="popup__fieldset">
+          <button type="button" class="popup__close-button" id="close-button">
+            <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+          </button>
+          <h2 class="popup__title">Nuevo Lugar</h2>
+          <input type="text" class="popup__input" placeholder="Titulo" id="title" required />
+          <input type="text" class="popup__input" placeholder="Enlace a la imagen" id="attach" required />
+        </fieldset>
+        <button id="create" class="popup__save-button" type="submit">Crear</button>
       </form>
     </div>
     <script src="./scripts/index.js"></script>

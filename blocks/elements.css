@@ -61,6 +61,18 @@
   opacity: 0.7;
   border: none;
 }
+.elements__trash-button {
+  width: 18px;
+  height: 19.3px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  top: 350px;
+  left: 410px;
+  background-color: transparent;
+  margin-top: -291px;
+  margin-left: 35px;
+}
 @media screen and (max-width: 320px) {
   .elements {
     width: 320px;
