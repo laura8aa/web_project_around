@@ -1,13 +1,13 @@
 .profile {
   display: flex;
-  max-width: 880px;
   justify-content: flex-start;
-  margin top: 0 auto;
+  margin-top: 0 auto;
   align-items: flex-end;
 }
 .profile__avatar {
   margin-top: 90px;
   margin-bottom: 50px;
+  margin-left: 200px;
 }
 .profile__info-name {
   font-family: Inter;
@@ -45,7 +45,7 @@
 }
 .profile__add-button {
   cursor: pointer;
-  margin-left: 40px;
+  margin-left: 29px;
 }
 
 .profile__edit-button {
@@ -75,6 +75,7 @@
   .profile__avatar {
     margin-top: 90px;
     margin-bottom: auto;
+    margin-left: unset;
   }
   .profile__info-name {
     font-family: Inter;

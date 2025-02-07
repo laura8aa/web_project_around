@@ -42,63 +42,25 @@
             <p id="profile-info" class="profile__info-ocupation">Explorador</p>
           </div>
         </section>
-        <section class="elements">
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto1.jpeg" alt="Yosemite" />
+        <section class="elements" id="elements">
+          <template id="cardtemplate">
+            <div class="elements__card">
+              <img class="elements__card-photo" src="#" alt="" />
 
-            <div class="elements__content">
-              <p class="elements__title">Valle de Yosemite</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
+              <div class="elements__content">
+                <p class="elements__title"></p>
+                <button class="elements__like-button" alt="Boton like"></button>
+                <button class="elements__trash-button"></button>
+              </div>
             </div>
-          </div>
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto2.jpeg" alt="Lago Louise" />
-            <div class="elements__content">
-              <p class="elements__title">Lago Louise</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
-            </div>
-          </div>
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto3.jpeg" alt="Montanas calvas" />
-            <div class="elements__content">
-              <p class="elements__title">Montanas Calvas</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
-            </div>
-          </div>
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto4.jpeg" alt="Latemar" />
-            <div class="elements__content">
-              <p class="elements__title">Latemar</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
-            </div>
-          </div>
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto5.jpeg" alt="Vanois National" />
-            <div class="elements__content">
-              <p class="elements__title">Vanois National Park</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
-            </div>
-          </div>
-          <div class="elements__card">
-            <img class="elements__card-photo" src="./images/7foto6.jpeg" alt="Lago di Braies" />
-            <div class="elements__content">
-              <p class="elements__title">Lago di Braies</p>
-              <img class="elements__like-button" src="./images/Group.png" alt="Boton like" />
-              <img class="elements__trash-button" src="./images/Trash@2x.png" alt="Boton trash" />
-            </div>
-          </div>
+          </template>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2024 Around The U.S.</p>
       </footer>
     </div>
-    <div class="popup" id="popup">
+    <div class="popup" id="popup__person">
       <form class="popup__form">
         <fieldset class="popup__fieldset">
           <button type="button" class="popup__close-button" id="close-button">
@@ -112,10 +74,10 @@
       </form>
     </div>
 
-    <div class="popup__new-place" id="popup__new-place">
+    <div class="popup" id="popup__new-place">
       <form class="popup__form">
         <fieldset class="popup__fieldset">
-          <button type="button" class="popup__close-button" id="close-button">
+          <button type="button" class="popup__close-button" id="button-to-close">
             <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
           </button>
           <h2 class="popup__title">Nuevo Lugar</h2>
@@ -124,6 +86,15 @@
         </fieldset>
         <button id="create" class="popup__save-button" type="submit">Crear</button>
       </form>
+    </div>
+    <div class="popup" id="popup__image">
+      <div class="popup__image">
+        <button type="button" class="popup__close-button" id="button-close">
+          <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+        </button>
+        <img alt="" class="popupimage" src="#" />
+        <p class="popup__caption"></p>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
