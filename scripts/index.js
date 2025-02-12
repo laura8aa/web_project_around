@@ -36,25 +36,31 @@ const popUps = document.querySelectorAll(".popup");
 const closeButton = document.getElementById("close-button");
 const saveButton = document.getElementById("save");
 const addButton = document.getElementById("add-button");
+const createButton = document.getElementById("create");
+const addTitle = document.getElementById("elements__title");
 const popUpImage = document.getElementById("popup__image");
-
+const photo = document.querySelector(".elements__card-photo");
 const likeButtons = document.querySelectorAll(".elements__like-button");
 const popUpPlace = document.getElementById("popup__new-place");
-const popUpPerson = document.getElementById("popup__Person");
+const popUpPerson = document.getElementById("popup__person");
 const handlePopUpClose = (evt) => {};
 
 const editProfileName = document.getElementById("profile-name");
 const editInfo = document.getElementById("profile-info");
 const editName = document.getElementById("name");
 const editAbout = document.getElementById("about");
+const editTitle = document.getElementById("title");
+const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
+//function for edit button
 function save(e) {
   e.preventDefault();
   editProfileName.textContent = editName.value;
   editInfo.textContent = editAbout.value;
   closePopUp();
 }
+
 //function to open popups
 function openPopUp() {
   popUps.classList.add("popup__visible");
@@ -65,11 +71,14 @@ function openPopUpPerson() {
 function openPopUpPlace() {
   popUpPlace.classList.add("popup__visible");
 }
-
-function openPopUpImage(data, name) {
+//function to open photos and caption
+function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");
+  popUpCaption = popUpImage.querySelector(".popup__caption");
   Image = popUpImage.querySelector(".popupimage");
   Image.src = data.link;
+  Image.alt = data.name;
+  popUpCaption.textContent = data.name;
 }
 function closePopUp() {
   popUps.classList.remove("popup__visible");
@@ -89,13 +98,23 @@ popUps.forEach((popup) => {
 saveButton.addEventListener("click", save);
 editButton.addEventListener("click", openPopUpPerson);
 addButton.addEventListener("click", openPopUpPlace);
+createButton.addEventListener("click", add);
 
 //document.querySelector("#edit-button"")
 initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });
+
 function renderCard(data, cardsContainer) {
   cardsContainer.prepend(getCardElement(data));
+}
+//function for add button
+function add(e) {
+  e.preventDefault();
+  let name = editTitle.value;
+  let link = editAttach.value;
+  renderCard({ name, link }, cardsContainer);
+  closePopUp();
 }
 
 function getCardElement(data) {
@@ -108,12 +127,13 @@ function getCardElement(data) {
 
   cardImg.addEventListener("click", () => openPopUpImage(data));
 
-  //function too delete each card
+  //function to delete each card
   cardImg.src = data.link;
   cardTitle.textContent = data.name;
   trashButton.addEventListener("click", (evt) => {
     evt.target.closest(".elements__card").remove();
   });
+
   //function to like a card
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("element__like-button_is-active");
