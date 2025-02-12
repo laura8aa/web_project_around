@@ -1,6 +1,5 @@
 .popup {
   display: none;
-  position: absolute;
   inset: 0;
   place-content: center;
   height: 330px;
@@ -21,7 +20,6 @@
   height: 330px;
   z-index: 99;
   margin-top: 195px;
-  position: relative;
 }
 .popup__title {
   margin-top: 34px;
@@ -37,13 +35,14 @@
   max-width: 238px;
   border: 0;
   margin-left: 36px;
+  position: relative;
 }
 
 .popup__close-button {
   max-width: 40px;
   max-height: 40px;
-  top: 150px;
-  right: 556px;
+  top: -37px;
+  right: -69px;
   position: absolute;
   background: black;
   border: none;
@@ -88,6 +87,7 @@
   margin-top: 90px;
   margin-right: auto;
   margin-left: auto;
+  position: relative;
 }
 .popup__caption {
   font-family: Inter;
