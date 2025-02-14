@@ -10,6 +10,20 @@
   margin-top: 41px;
   margin-bottom: 40px;
 }
+@media screen and (max-width: 768px) {
+  .header {
+    max-width: 768px;
+  }
+  .header__vector {
+    margin-top: 45px;
+    margin-left: 23px;
+  }
+  .header__line {
+    margin-top: 41px;
+    margin-bottom: 40px;
+    max-width: 768px;
+  }
+}
 @media screen and (max-width: 320px) {
   .header {
     max-width: 320px;
