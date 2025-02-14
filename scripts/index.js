@@ -90,7 +90,7 @@ function closePopUp(e) {
 function like() {
   like.styleBackgroundColor = "black";
 }
-//function to close popups and save them
+//function to close popups
 popUps.forEach((popup) => {
   const closeButton = popup.querySelector(".popup__close-button");
 
@@ -118,7 +118,7 @@ function add(e) {
   let name = editTitle.value;
   let link = editAttach.value;
   renderCard({ name, link }, cardsContainer);
-  closePopUp();
+  closePopUp(e);
 }
 
 function getCardElement(data) {
