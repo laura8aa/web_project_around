@@ -33,7 +33,6 @@ const initialCards = [
 
 const editButton = document.getElementById("edit-button"); //document.querySelector("#edit-button"")
 const popUps = document.querySelectorAll(".popup");
-const closeButton = document.getElementById("close-button");
 const saveButton = document.getElementById("save");
 const addButton = document.getElementById("add-button");
 const createButton = document.getElementById("create");
@@ -42,6 +41,7 @@ const popUpImage = document.getElementById("popup__image");
 const photo = document.querySelector(".elements__card-photo");
 const likeButtons = document.querySelectorAll(".elements__like-button");
 const popUpPlace = document.getElementById("popup__new-place");
+const popUpsForm = document.querySelectorAll(".popup__form");
 const popUpPerson = document.getElementById("popup__person");
 const handlePopUpClose = (evt) => {};
 
@@ -58,7 +58,7 @@ function save(e) {
   e.preventDefault();
   editProfileName.textContent = editName.value;
   editInfo.textContent = editAbout.value;
-  closePopUp();
+  closePopUp(e);
 }
 
 //function to open popups
@@ -66,6 +66,8 @@ function openPopUp() {
   popUps.classList.add("popup__visible");
 }
 function openPopUpPerson() {
+  editName.value = editProfileName.textContent;
+  editAbout.value = editInfo.textContent;
   popUpPerson.classList.add("popup__visible");
 }
 function openPopUpPlace() {
@@ -80,17 +82,19 @@ function openPopUpImage(data) {
   Image.alt = data.name;
   popUpCaption.textContent = data.name;
 }
-function closePopUp() {
-  popUps.classList.remove("popup__visible");
+function closePopUp(e) {
+  const popUp = e.target.closest(".popup");
+  popUp.classList.remove("popup__visible");
 }
 // Toggle the "liked" class which changes the color
 function like() {
   like.styleBackgroundColor = "black";
 }
-//function to close popups
+//function to close popups and save them
 popUps.forEach((popup) => {
-  const button = popup.querySelector(".popup__close-button");
-  button.addEventListener("click", () => {
+  const closeButton = popup.querySelector(".popup__close-button");
+
+  closeButton.addEventListener("click", () => {
     popup.classList.remove("popup__visible");
   });
 });
