@@ -1,7 +1,6 @@
 .elements {
   width: 880px;
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   column-gap: 17px;
@@ -37,7 +36,6 @@
   inset: 0;
   place-content: center;
   position: fixed;
-
   width: 433px;
   height: 540px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -102,12 +100,11 @@
   .elements {
     width: 768px;
     display: grid;
-
     grid-template-columns: 297px 297px;
     grid-template-rows: repeat(2, 1fr);
     column-gap: 12px;
     row-gap: 21px;
-    margin-left: 55px;
+    justify-content: center;
     margin-top: 55px;
   }
 }
