@@ -144,3 +144,23 @@ function getCardElement(data) {
   });
   return cardElement;
 }
+//form validation
+const formElement = document.querySelector(".popup__form");
+const formInput = formElement.querySelector(".popup__input");
+
+formElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+});
+
+formInput.addEventListener("input", function (evt) {});
+const showError = (input) => {
+  input.classList.add("form__input_type_error"); // añadir la clase de error al elemento de entrada
+};
+
+const hideError = (input) => {
+  input.classList.remove("form__input_type_error"); // eliminar la clase de error del elemento de entrada
+};
+
+formElement.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+});

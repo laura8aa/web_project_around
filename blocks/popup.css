@@ -21,6 +21,9 @@
   z-index: 99;
   margin-top: 195px;
 }
+.popup__input:invalid {
+  border-bottom: 1px solid red;
+}
 .popup__title {
   margin-top: 34px;
   margin-bottom: 54px;
