@@ -1,3 +1,5 @@
+import { resetValidation, enableValidation, validationConfig } from "./validate.js";
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -53,6 +55,7 @@ const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
+
 //function for edit button
 function save(e) {
   e.preventDefault();
@@ -65,10 +68,14 @@ function save(e) {
 function openPopUp() {
   popUps.classList.add("popup__visible");
 }
+
 function openPopUpPerson() {
   editName.value = editProfileName.textContent;
   editAbout.value = editInfo.textContent;
   popUpPerson.classList.add("popup__visible");
+  saveButton.disabled = true;
+  saveButton.classList.add("popup__save-button-disabled");
+  createButton.disabled = true;
 }
 function openPopUpPlace() {
   popUpPlace.classList.add("popup__visible");
@@ -90,6 +97,7 @@ function closePopUp(e) {
 function like() {
   like.styleBackgroundColor = "black";
 }
+
 //function to close popups
 popUps.forEach((popup) => {
   const closeButton = popup.querySelector(".popup__close-button");
@@ -97,6 +105,22 @@ popUps.forEach((popup) => {
   closeButton.addEventListener("click", () => {
     popup.classList.remove("popup__visible");
   });
+
+  //function to close popup outside the popup
+  popup.addEventListener("click", (event) => {
+    console.log(event.target);
+    if (event.target === popup) {
+      popup.classList.remove("popup__visible");
+    }
+  });
+});
+
+//function to close with esc key
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    const activePopUp = document.querySelector(".popup__visible");
+    activePopUp.classList.remove("popup__visible");
+  }
 });
 
 saveButton.addEventListener("click", save);
@@ -144,23 +168,61 @@ function getCardElement(data) {
   });
   return cardElement;
 }
+
 //form validation
 const formElement = document.querySelector(".popup__form");
 const formInput = formElement.querySelector(".popup__input");
+const messageError = document.querySelector(".popup__message-error");
+const urlError = document.getElementById("popup__url-error");
+const disabledSaveButton = document.querySelector(".popup__save-button-disabled");
 
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 });
-
-formInput.addEventListener("input", function (evt) {});
-const showError = (input) => {
-  input.classList.add("form__input_type_error"); // añadir la clase de error al elemento de entrada
-};
-
-const hideError = (input) => {
-  input.classList.remove("form__input_type_error"); // eliminar la clase de error del elemento de entrada
-};
-
-formElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
+/*
+//name message error
+editName.addEventListener("input", () => {
+  if (editName.value.length < 2 || editName.value.length > 40) {
+    messageError.classList.add("popup__message-error-display");
+    saveButton.classList.toggle(".popup__save-button-disabled");
+    //?
+    saveButton.disabled = true;
+  } else {
+    messageError.classList.remove("popup__message-error-display");
+    saveButton.classList.remove(".popup__save-button_disabled");
+    saveButton.disabled = false;
+  }
 });
+
+//profession message error
+editAbout.addEventListener("input", () => {
+  if (editAbout.value.length < 2 || editAbout.value.length > 200) {
+    messageError.classList.add("popup__message-error-display");
+    saveButton.disabled = true;
+  } else {
+    messageError.classList.remove("popup__message-error-display");
+    saveButton.disabled = false;
+  }
+});
+
+//title message error
+editTitle.addEventListener("input", () => {
+  if (editTitle.value.length < 2 || editTitle.value.length > 30) {
+    messageError.classList.add("popup__message-error-display");
+    createButton.disabled = true;
+  } else {
+    messageError.classList.remove("popup__message-error-display");
+    createButton.disabled = false;
+  }
+});
+
+//url message error
+editAttach.addEventListener("url", () => {
+  if (!urlPattern.test(editTitle.value)) {
+    urlError.classList.add("popup__url-error-display");
+    saveButton.disabled = true;
+  } else {
+    urlError.classList.remove("popup__url-error-display");
+    saveButton.disabled = false;
+  }
+});*/

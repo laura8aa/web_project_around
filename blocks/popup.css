@@ -5,7 +5,7 @@
   height: 330px;
   position: fixed;
   width: 100%;
-  height: 100vw;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -17,7 +17,7 @@
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0);
   border-radius: 10px;
   width: 430px;
-  height: 330px;
+  max-height: 330px;
   z-index: 99;
   margin-top: 195px;
 }
@@ -60,18 +60,16 @@
   grid-template-columns: 1, 1fr;
   grid-template-rows: 2, 1fr;
   width: 358px;
-  height: 27px;
-  margin-bottom: 23.74px;
+  height: 35px;
   border: 0;
   border-bottom: 1px solid #000000;
   color: #c4c4c4;
 }
 .popup__save-button {
-  margin-top: 24px;
   margin-left: 36px;
   width: 358px;
   height: 50.15px;
-  margin-bottom: 36.51px;
+  margin-top: 49px;
   border-radius: 2px 0px 0px 0px;
   border: 1px 0px 0px 0px;
   border: 1px solid #c4c4c4;
@@ -82,6 +80,24 @@
   text-align: center;
   color: #c4c4c4;
   background-color: #000000;
+  position: fixed;
+}
+.popup__save-button-disabled {
+  margin-left: 36px;
+  width: 358px;
+  height: 50.15px;
+  margin-top: 34px;
+  border: 1px solid #c4c4c4;
+  background: white;
+  color: #c4c4c4;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: center;
+  border-radius: 2px;
+  border-width: 1px;
+  position: fixed;
 }
 .popup__image {
   z-index: 99;
@@ -110,6 +126,31 @@
 .popup__save-button:hover {
   opacity: 0.7;
   border: none;
+}
+
+.popup__message-error {
+  color: #ff0000;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+  letter-spacing: 0%;
+  display: none;
+}
+.popup__message-error-display {
+  display: block;
+}
+.popup__url-error {
+  color: #ff0000;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+  letter-spacing: 0%;
+  display: none;
+}
+.popup__url-error-display {
+  display: block;
 }
 @media screen and (max-width: 320px) {
   .popup {
@@ -193,6 +234,23 @@
     text-align: center;
     color: #c4c4c4;
     background-color: #000000;
+  }
+  .popup__save-button-disabled {
+    margin-top: 24px;
+    margin-left: 22px;
+    width: 238px;
+    height: 56px;
+    margin-bottom: 36.51px;
+    border: 1px solid #c4c4c4;
+    background: white;
+    color: #c4c4c4;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: center;
+    border-radius: 2px;
+    border-width: 1px;
   }
   .popup__save-button:hover {
     opacity: 0.7;
