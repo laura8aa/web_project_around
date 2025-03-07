@@ -1,4 +1,4 @@
-import { resetValidation, enableValidation, validationConfig } from "./validate.js";
+import { resetValidation, enableValidation, validationConfig } from "./FormValidation.js";
 
 const initialCards = [
   {
@@ -108,7 +108,6 @@ popUps.forEach((popup) => {
 
   //function to close popup outside the popup
   popup.addEventListener("click", (event) => {
-    console.log(event.target);
     if (event.target === popup) {
       popup.classList.remove("popup__visible");
     }
@@ -179,50 +178,3 @@ const disabledSaveButton = document.querySelector(".popup__save-button-disabled"
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
 });
-/*
-//name message error
-editName.addEventListener("input", () => {
-  if (editName.value.length < 2 || editName.value.length > 40) {
-    messageError.classList.add("popup__message-error-display");
-    saveButton.classList.toggle(".popup__save-button-disabled");
-    //?
-    saveButton.disabled = true;
-  } else {
-    messageError.classList.remove("popup__message-error-display");
-    saveButton.classList.remove(".popup__save-button_disabled");
-    saveButton.disabled = false;
-  }
-});
-
-//profession message error
-editAbout.addEventListener("input", () => {
-  if (editAbout.value.length < 2 || editAbout.value.length > 200) {
-    messageError.classList.add("popup__message-error-display");
-    saveButton.disabled = true;
-  } else {
-    messageError.classList.remove("popup__message-error-display");
-    saveButton.disabled = false;
-  }
-});
-
-//title message error
-editTitle.addEventListener("input", () => {
-  if (editTitle.value.length < 2 || editTitle.value.length > 30) {
-    messageError.classList.add("popup__message-error-display");
-    createButton.disabled = true;
-  } else {
-    messageError.classList.remove("popup__message-error-display");
-    createButton.disabled = false;
-  }
-});
-
-//url message error
-editAttach.addEventListener("url", () => {
-  if (!urlPattern.test(editTitle.value)) {
-    urlError.classList.add("popup__url-error-display");
-    saveButton.disabled = true;
-  } else {
-    urlError.classList.remove("popup__url-error-display");
-    saveButton.disabled = false;
-  }
-});*/

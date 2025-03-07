@@ -29,7 +29,7 @@ const setEventListeners = (form, data) => {
   });
   function validation() {
     let allInputs = true;
-    console.log(allInputs);
+
     inputs.forEach((input) => {
       const span = input.closest(".popup__field").querySelector(".popup__message-error"); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
       const disabledSaveButton = document.querySelector(".popup__save-button-disabled");
@@ -42,7 +42,7 @@ const setEventListeners = (form, data) => {
         span.textContent = "Por favor, rellena este campo.";
 
         allInputs = false;
-        console.log(allInputs);
+
         if (input.type == "url") {
           span.textContent = "Por favor, introduce una dirección web.";
         }
