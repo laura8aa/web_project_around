@@ -1,4 +1,5 @@
 import { resetValidation, enableValidation, validationConfig } from "./FormValidation.js";
+import card from "./card.js";
 
 const initialCards = [
   {
@@ -56,6 +57,25 @@ const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
 
+const x1 = new card(
+  {
+    name: "laura",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  "#cardtemplate"
+);
+console.log("constructor" + x1);
+cardsContainer.prepend(x1.setProperties());
+const x2 = new card(
+  {
+    name: "victor",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  "#cardtemplate"
+);
+console.log("constructor" + x2);
+cardsContainer.prepend(x2.setProperties());
+
 //function for edit button
 function save(e) {
   e.preventDefault();
@@ -93,10 +113,10 @@ function closePopUp(e) {
   const popUp = e.target.closest(".popup");
   popUp.classList.remove("popup__visible");
 }
-// Toggle the "liked" class which changes the color
+/* Toggle the "liked" class which changes the color
 function like() {
   like.styleBackgroundColor = "black";
-}
+}*/
 
 //function to close popups
 popUps.forEach((popup) => {
@@ -113,7 +133,7 @@ popUps.forEach((popup) => {
     }
   });
 });
-
+/*
 //function to close with esc key
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
@@ -134,7 +154,8 @@ initialCards.forEach((data) => {
 
 function renderCard(data, cardsContainer) {
   cardsContainer.prepend(getCardElement(data));
-}
+} */
+/*
 //function for add button
 function add(e) {
   e.preventDefault();
@@ -168,13 +189,6 @@ function getCardElement(data) {
   return cardElement;
 }
 
-//form validation
-const formElement = document.querySelector(".popup__form");
-const formInput = formElement.querySelector(".popup__input");
-const messageError = document.querySelector(".popup__message-error");
-const urlError = document.getElementById("popup__url-error");
-const disabledSaveButton = document.querySelector(".popup__save-button-disabled");
-
 formElement.addEventListener("submit", function (evt) {
   evt.preventDefault();
-});
+});*/
