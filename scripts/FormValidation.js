@@ -13,7 +13,7 @@ const resetValidation = () => {
     const inputList = Array.from(form.querySelectorAll(inputSelector));
     inputList.forEach((inputList) => {
       //ocultar el error
-      //inactiar el boton
+      //inactivar el boton
     });
   });
 };
@@ -31,7 +31,7 @@ const setEventListeners = (form, data) => {
     let allInputs = true;
 
     inputs.forEach((input) => {
-      const span = input.closest(".popup__field").querySelector(".popup__message-error"); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
+      const span = input.closest(".popup__field").querySelector(".popup__message-error"); // IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
       const disabledSaveButton = document.querySelector(".popup__save-button-disabled");
 
       if (

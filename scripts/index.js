@@ -1,5 +1,6 @@
 import { resetValidation, enableValidation, validationConfig } from "./FormValidation.js";
 import card from "./card.js";
+import { openPopUpPerson, openPopUpPlace, renderCard } from "./utils.js";
 
 const initialCards = [
   {
@@ -36,45 +37,29 @@ const initialCards = [
 
 const editButton = document.getElementById("edit-button"); //document.querySelector("#edit-button"")
 const popUps = document.querySelectorAll(".popup");
-const saveButton = document.getElementById("save");
+
 const addButton = document.getElementById("add-button");
-const createButton = document.getElementById("create");
+
 const addTitle = document.getElementById("elements__title");
 const popUpImage = document.getElementById("popup__image");
 const photo = document.querySelector(".elements__card-photo");
 const likeButtons = document.querySelectorAll(".elements__like-button");
 const popUpPlace = document.getElementById("popup__new-place");
 const popUpsForm = document.querySelectorAll(".popup__form");
-const popUpPerson = document.getElementById("popup__person");
+
 const handlePopUpClose = (evt) => {};
 
-const editProfileName = document.getElementById("profile-name");
-const editInfo = document.getElementById("profile-info");
-const editName = document.getElementById("name");
-const editAbout = document.getElementById("about");
 const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
 
-const x1 = new card(
-  {
-    name: "laura",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  "#cardtemplate"
-);
-console.log("constructor" + x1);
-cardsContainer.prepend(x1.setProperties());
-const x2 = new card(
-  {
-    name: "victor",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  "#cardtemplate"
-);
-console.log("constructor" + x2);
-cardsContainer.prepend(x2.setProperties());
+initialCards.forEach((Element) => {
+  renderCard(Element, cardsContainer);
+});
+
+editButton.addEventListener("click", openPopUpPerson);
+addButton.addEventListener("click", openPopUpPlace);
 
 //function for edit button
 function save(e) {
@@ -84,22 +69,6 @@ function save(e) {
   closePopUp(e);
 }
 
-//function to open popups
-function openPopUp() {
-  popUps.classList.add("popup__visible");
-}
-
-function openPopUpPerson() {
-  editName.value = editProfileName.textContent;
-  editAbout.value = editInfo.textContent;
-  popUpPerson.classList.add("popup__visible");
-  saveButton.disabled = true;
-  saveButton.classList.add("popup__save-button-disabled");
-  createButton.disabled = true;
-}
-function openPopUpPlace() {
-  popUpPlace.classList.add("popup__visible");
-}
 //function to open photos and caption
 function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");

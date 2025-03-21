@@ -1,4 +1,14 @@
 //contendrá los controladores de eventos y la función que abre/cierra las ventanas modales.
+import card from "./card.js";
+
+const editInfo = document.getElementById("profile-info");
+const editName = document.getElementById("name");
+const editAbout = document.getElementById("about");
+const popUpPerson = document.getElementById("popup__person");
+const saveButton = document.getElementById("save");
+const createButton = document.getElementById("create");
+const editProfileName = document.getElementById("profile-name");
+const popUpPlace = document.getElementById("popup__new-place");
 
 //function for edit button
 function save(e) {
@@ -24,6 +34,11 @@ function openPopUpPerson() {
 function openPopUpPlace() {
   popUpPlace.classList.add("popup__visible");
 }
+
+function renderCard(data, cardsContainer) {
+  const x1 = new card(data, "#cardtemplate");
+  cardsContainer.prepend(x1.setProperties());
+}
 //function to open photos and caption
 function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");
@@ -40,7 +55,7 @@ function closePopUp(e) {
 /* Toggle the "liked" class which changes the color
 function like() {
   like.styleBackgroundColor = "black";
-}*/
+}
 
 //function to close popups
 popUps.forEach((popup) => {
@@ -56,7 +71,7 @@ popUps.forEach((popup) => {
       popup.classList.remove("popup__visible");
     }
   });
-});
+});*/
 
 //function to close with esc key
 document.addEventListener("keydown", function (event) {
@@ -66,19 +81,19 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-saveButton.addEventListener("click", save);
-editButton.addEventListener("click", openPopUpPerson);
-addButton.addEventListener("click", openPopUpPlace);
-createButton.addEventListener("click", add);
+//saveButton.addEventListener("click", save);
+//editButton.addEventListener("click", openPopUpPerson);
+//addButton.addEventListener("click", openPopUpPlace);
+//createButton.addEventListener("click", add);
 
 //document.querySelector("#edit-button"")
-initialCards.forEach((data) => {
-  renderCard(data, cardsContainer);
-});
+//initialCards.forEach((data) => {
+// renderCard(data, cardsContainer);
+//});
 
-function renderCard(data, cardsContainer) {
-  cardsContainer.prepend(getCardElement(data));
-}
+//function renderCard(data, cardsContainer) {
+// cardsContainer.prepend(getCardElement(data));
+//}
 
 //function for add button
 function add(e) {
@@ -89,30 +104,8 @@ function add(e) {
   closePopUp(e);
 }
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardTitle = cardElement.querySelector(".elements__title");
-  const likeButton = cardElement.querySelector(".elements__like-button");
-  const cardImg = cardElement.querySelector(".elements__card-photo");
-  const trashButton = cardElement.querySelector(".elements__trash-button");
-  const popUpCaption = cardElement.querySelector(".popup__caption");
+//formElement.addEventListener("submit", function (evt) {
+// evt.preventDefault();
+//});
 
-  cardImg.addEventListener("click", () => openPopUpImage(data));
-
-  //function to delete each card
-  cardImg.src = data.link;
-  cardTitle.textContent = data.name;
-  trashButton.addEventListener("click", (evt) => {
-    evt.target.closest(".elements__card").remove();
-  });
-
-  //function to like a card
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("element__like-button_is-active");
-  });
-  return cardElement;
-}
-
-formElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});
+export { openPopUpPerson, openPopUpPlace, renderCard };
