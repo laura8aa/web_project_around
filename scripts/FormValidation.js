@@ -1,38 +1,40 @@
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button-disabled",
-  inputErrorClass: ".popup__message-error",
-  errorClass: "popup__error_visible", //pendiente
-};
-const resetValidation = () => {
-  const formList = Array.from(document.querySelectorAll(formSelector));
-  formList.forEach((form) => {
-    form.reset();
-    const inputList = Array.from(form.querySelectorAll(inputSelector));
-    inputList.forEach((inputList) => {
-      //ocultar el error
-      //inactivar el boton
+class FormValidation {
+  constructor({ inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }, formSelector) {
+    this._formSelector = formSelector;
+    this._inputSelector = inputSelector;
+    this._submitButtonSelector = submitButtonSelector;
+    this._inactiveButtonClass = inactiveButtonClass;
+    this._inputErrorClass = inputErrorClass;
+    this._errorClass = errorClass;
+  }
+
+  _resetValidation = () => {
+    const formList = Array.from(document.querySelectorAll(this._formSelector));
+    formList.forEach((form) => {
+      form.reset();
+      const inputList = Array.from(form.querySelectorAll(this._inputSelector));
+      inputList.forEach((inputList) => {
+        //ocultar el error
+        //inactiar el boton
+      });
     });
-  });
-};
+  };
 
-const setEventListeners = (form, data) => {
-  const inputs = form.querySelectorAll(data.inputSelector);
+  _setEventListeners = () => {
+    const inputs = this._formSelector.querySelectorAll(this._inputSelector);
 
-  const saveButton = document.getElementById("save");
-  const createButton = document.getElementById("create");
+    console.log(inputs);
+    inputs.forEach((input) => {
+      input.addEventListener("input", validation);
+    });
+  };
 
-  inputs.forEach((input) => {
-    input.addEventListener("input", validation);
-  });
-  function validation() {
+  _validation() {
     let allInputs = true;
 
     inputs.forEach((input) => {
-      const span = input.closest(".popup__field").querySelector(".popup__message-error"); // IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
-      const disabledSaveButton = document.querySelector(".popup__save-button-disabled");
+      const span = input.closest(".popup__field").querySelector(this._inputErrorClass); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
+      const disabledSaveButton = document.querySelector(this._inactiveButtonClass);
 
       if (
         input.value.length < input.getAttribute("minlength") ||
@@ -44,7 +46,7 @@ const setEventListeners = (form, data) => {
         allInputs = false;
 
         if (input.type == "url") {
-          span.textContent = "Por favor, introduce una dirección web.";
+          span.textContent = "Por favor, introduce una direccion web.";
         }
       } else {
         span.classList.remove("popup__message-error-display");
@@ -54,24 +56,28 @@ const setEventListeners = (form, data) => {
     if (allInputs) {
       saveButton.disabled = false;
       createButton.disabled = false;
-      saveButton.classList.remove("popup__save-button-disabled");
+      saveButton.classList.remove(this._inactiveButtonClass);
     } else {
       saveButton.disabled = true;
       createButton.disabled = true;
-      saveButton.classList.add("popup__save-button-disabled");
+      saveButton.classList.add(this._inactiveButtonClass);
     }
   }
-};
-const enableValidation = (data) => {
-  const formList = Array.from(document.querySelectorAll(data.formSelector));
-  formList.forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+
+  enableValidation = () => {
+    console.log(this._formSelector);
+    const formList = Array.from(document.querySelectorAll(this._formSelector));
+
+    console.log(formList);
+    formList.forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+      _setEventListeners(form);
+      //ocultar el error
+      //inactiar el boton
     });
-    setEventListeners(form, data);
-    //ocultar el error
-    //inactiar el boton
-  });
-};
-enableValidation(validationConfig);
-export { resetValidation, enableValidation, validationConfig };
+  };
+}
+
+export default FormValidation;

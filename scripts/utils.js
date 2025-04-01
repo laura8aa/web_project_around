@@ -31,6 +31,7 @@ function openPopUpPerson() {
   saveButton.classList.add("popup__save-button-disabled");
   createButton.disabled = true;
 }
+
 function openPopUpPlace() {
   popUpPlace.classList.add("popup__visible");
 }
@@ -39,6 +40,7 @@ function renderCard(data, cardsContainer) {
   const x1 = new card(data, "#cardtemplate");
   cardsContainer.prepend(x1.setProperties());
 }
+/*
 //function to open photos and caption
 function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");
@@ -47,7 +49,8 @@ function openPopUpImage(data) {
   Image.src = data.link;
   Image.alt = data.name;
   popUpCaption.textContent = data.name;
-}
+}*/
+
 function closePopUp(e) {
   const popUp = e.target.closest(".popup");
   popUp.classList.remove("popup__visible");

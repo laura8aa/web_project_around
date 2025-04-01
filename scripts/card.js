@@ -26,6 +26,7 @@ class card {
     const trashButton = cardElement.querySelector(".elements__trash-button");
     const popUpCaption = cardElement.querySelector(".popup__caption");
 
+    //cardImg.src = this._link;
     cardImg.addEventListener("click", () => openPopUpImage(data));
 
     //function to delete each card

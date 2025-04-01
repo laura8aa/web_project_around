@@ -1,5 +1,5 @@
-import { resetValidation, enableValidation, validationConfig } from "./FormValidation.js";
 import card from "./card.js";
+import FormValidation from "./FormValidation.js";
 import { openPopUpPerson, openPopUpPlace, renderCard } from "./utils.js";
 
 const initialCards = [
@@ -37,31 +37,28 @@ const initialCards = [
 
 const editButton = document.getElementById("edit-button"); //document.querySelector("#edit-button"")
 const popUps = document.querySelectorAll(".popup");
-
 const addButton = document.getElementById("add-button");
-
 const addTitle = document.getElementById("elements__title");
 const popUpImage = document.getElementById("popup__image");
 const photo = document.querySelector(".elements__card-photo");
 const likeButtons = document.querySelectorAll(".elements__like-button");
-const popUpPlace = document.getElementById("popup__new-place");
+
 const popUpsForm = document.querySelectorAll(".popup__form");
-
 const handlePopUpClose = (evt) => {};
-
 const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
 
-initialCards.forEach((Element) => {
-  renderCard(Element, cardsContainer);
+//arreglo y objeto es casi casi lo mismo
+
+initialCards.forEach((element) => {
+  renderCard(element, cardsContainer);
 });
 
 editButton.addEventListener("click", openPopUpPerson);
 addButton.addEventListener("click", openPopUpPlace);
 
-//function for edit button
 function save(e) {
   e.preventDefault();
   editProfileName.textContent = editName.value;
@@ -69,15 +66,23 @@ function save(e) {
   closePopUp(e);
 }
 
-//function to open photos and caption
-function openPopUpImage(data) {
-  popUpImage.classList.add("popup__visible");
-  popUpCaption = popUpImage.querySelector(".popup__caption");
-  Image = popUpImage.querySelector(".popupimage");
-  Image.src = data.link;
-  Image.alt = data.name;
-  popUpCaption.textContent = data.name;
+const validationConfig = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button-disabled",
+  inputErrorClass: ".popup__message-error",
+  errorClass: "popup__error_visible", //pendiente
+};
+
+const profileFormValidation = new FormValidation(validationConfig, "#popup__form_profile");
+
+profileFormValidation.enableValidation();
+
+//function to open popups
+function openPopUp() {
+  popUps.classList.add("popup__visible");
 }
+
 function closePopUp(e) {
   const popUp = e.target.closest(".popup");
   popUp.classList.remove("popup__visible");
@@ -112,8 +117,8 @@ document.addEventListener("keydown", function (event) {
 });
 
 saveButton.addEventListener("click", save);
-editButton.addEventListener("click", openPopUpPerson);
-addButton.addEventListener("click", openPopUpPlace);
+;
+
 createButton.addEventListener("click", add);
 
 //document.querySelector("#edit-button"")
