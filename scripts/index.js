@@ -1,6 +1,6 @@
 import card from "./card.js";
 import FormValidation from "./FormValidation.js";
-import { openPopUpPerson, openPopUpPlace, renderCard } from "./utils.js";
+import { openPopUpPerson, openPopUpPlace, renderCard, add, save } from "./utils.js";
 
 const initialCards = [
   {
@@ -49,6 +49,8 @@ const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardTemplate = document.getElementById("cardtemplate").content.querySelector(".elements__card"); //content inside template
 const cardsContainer = document.getElementById("elements");
+const saveButton = document.querySelector(".popup__save-button");
+const createButton = document.getElementById("create");
 
 //arreglo y objeto es casi casi lo mismo
 
@@ -59,13 +61,6 @@ initialCards.forEach((element) => {
 editButton.addEventListener("click", openPopUpPerson);
 addButton.addEventListener("click", openPopUpPlace);
 
-function save(e) {
-  e.preventDefault();
-  editProfileName.textContent = editName.value;
-  editInfo.textContent = editAbout.value;
-  closePopUp(e);
-}
-
 const validationConfig = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
@@ -73,10 +68,13 @@ const validationConfig = {
   inputErrorClass: ".popup__message-error",
   errorClass: "popup__error_visible", //pendiente
 };
-
+//constructor seleccionar el html
 const profileFormValidation = new FormValidation(validationConfig, "#popup__form_profile");
+const newPlaceFormValidation = new FormValidation(validationConfig, "#popup__new-place");
 
+//boton de inicio de la clase
 profileFormValidation.enableValidation();
+newPlaceFormValidation.enableValidation();
 
 //function to open popups
 function openPopUp() {
@@ -107,7 +105,9 @@ popUps.forEach((popup) => {
     }
   });
 });
-/*
+saveButton.addEventListener("click", save);
+createButton.addEventListener("click", add);
+
 //function to close with esc key
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
@@ -115,54 +115,3 @@ document.addEventListener("keydown", function (event) {
     activePopUp.classList.remove("popup__visible");
   }
 });
-
-saveButton.addEventListener("click", save);
-;
-
-createButton.addEventListener("click", add);
-
-//document.querySelector("#edit-button"")
-initialCards.forEach((data) => {
-  renderCard(data, cardsContainer);
-});
-
-function renderCard(data, cardsContainer) {
-  cardsContainer.prepend(getCardElement(data));
-} */
-/*
-//function for add button
-function add(e) {
-  e.preventDefault();
-  let name = editTitle.value;
-  let link = editAttach.value;
-  renderCard({ name, link }, cardsContainer);
-  closePopUp(e);
-}
-
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardTitle = cardElement.querySelector(".elements__title");
-  const likeButton = cardElement.querySelector(".elements__like-button");
-  const cardImg = cardElement.querySelector(".elements__card-photo");
-  const trashButton = cardElement.querySelector(".elements__trash-button");
-  const popUpCaption = cardElement.querySelector(".popup__caption");
-
-  cardImg.addEventListener("click", () => openPopUpImage(data));
-
-  //function to delete each card
-  cardImg.src = data.link;
-  cardTitle.textContent = data.name;
-  trashButton.addEventListener("click", (evt) => {
-    evt.target.closest(".elements__card").remove();
-  });
-
-  //function to like a card
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("element__like-button_is-active");
-  });
-  return cardElement;
-}
-
-formElement.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-});*/

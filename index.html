@@ -61,7 +61,7 @@
       </footer>
     </div>
     <div class="popup" id="popup__person">
-      <form class="popup__form" novalidate>
+      <form class="popup__form" id="popup__form_profile" novalidate>
         <fieldset class="popup__fieldset">
           <button type="button" class="popup__close-button" id="close-button">
             <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
@@ -111,7 +111,7 @@
               placeholder="Titulo"
               id="title"
               minlength="2"
-              maxlength="30"
+              maxlength="200"
               required
             />
             <span class="popup__message-error"></span>
@@ -130,7 +130,7 @@
           <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
         </button>
         <img alt="" class="popupimage" src="#" />
-        <p class="popup__caption"></p>
+        <p id="popup__caption" class="popup__caption"></p>
       </div>
     </div>
     <script type="module" src="./scripts/index.js"></script>

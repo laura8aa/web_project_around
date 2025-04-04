@@ -10,7 +10,7 @@
               </div>
             </div>
           </template> */
-
+import { openPopUpImage, closePopUp } from "./utils.js";
 class card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -24,10 +24,8 @@ class card {
     const likeButton = cardElement.querySelector(".elements__like-button");
     const cardImg = cardElement.querySelector(".elements__card-photo");
     const trashButton = cardElement.querySelector(".elements__trash-button");
-    const popUpCaption = cardElement.querySelector(".popup__caption");
 
-    //cardImg.src = this._link;
-    cardImg.addEventListener("click", () => openPopUpImage(data));
+    cardImg.addEventListener("click", () => openPopUpImage({ name: this._name, link: this._link }));
 
     //function to delete each card
     cardImg.src = this._link;

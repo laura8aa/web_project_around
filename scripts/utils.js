@@ -9,6 +9,11 @@ const saveButton = document.getElementById("save");
 const createButton = document.getElementById("create");
 const editProfileName = document.getElementById("profile-name");
 const popUpPlace = document.getElementById("popup__new-place");
+const popUpImage = document.getElementById("popup__image");
+const popUpCaption = document.getElementById("popup__caption");
+const editTitle = document.getElementById("title");
+const editAttach = document.getElementById("attach");
+const cardsContainer = document.getElementById("elements");
 
 //function for edit button
 function save(e) {
@@ -40,41 +45,19 @@ function renderCard(data, cardsContainer) {
   const x1 = new card(data, "#cardtemplate");
   cardsContainer.prepend(x1.setProperties());
 }
-/*
-//function to open photos and caption
 function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");
-  popUpCaption = popUpImage.querySelector(".popup__caption");
+  const popUpCaption = popUpImage.querySelector(".popup__caption");
   Image = popUpImage.querySelector(".popupimage");
   Image.src = data.link;
   Image.alt = data.name;
   popUpCaption.textContent = data.name;
-}*/
+}
 
 function closePopUp(e) {
   const popUp = e.target.closest(".popup");
   popUp.classList.remove("popup__visible");
 }
-/* Toggle the "liked" class which changes the color
-function like() {
-  like.styleBackgroundColor = "black";
-}
-
-//function to close popups
-popUps.forEach((popup) => {
-  const closeButton = popup.querySelector(".popup__close-button");
-
-  closeButton.addEventListener("click", () => {
-    popup.classList.remove("popup__visible");
-  });
-
-  //function to close popup outside the popup
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      popup.classList.remove("popup__visible");
-    }
-  });
-});*/
 
 //function to close with esc key
 document.addEventListener("keydown", function (event) {
@@ -84,19 +67,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-//saveButton.addEventListener("click", save);
-//editButton.addEventListener("click", openPopUpPerson);
-//addButton.addEventListener("click", openPopUpPlace);
-//createButton.addEventListener("click", add);
-
-//document.querySelector("#edit-button"")
-//initialCards.forEach((data) => {
-// renderCard(data, cardsContainer);
-//});
-
-//function renderCard(data, cardsContainer) {
-// cardsContainer.prepend(getCardElement(data));
-//}
+saveButton.addEventListener("click", save);
 
 //function for add button
 function add(e) {
@@ -111,4 +82,4 @@ function add(e) {
 // evt.preventDefault();
 //});
 
-export { openPopUpPerson, openPopUpPlace, renderCard };
+export { openPopUpPerson, openPopUpPlace, renderCard, openPopUpImage, closePopUp, add, save };

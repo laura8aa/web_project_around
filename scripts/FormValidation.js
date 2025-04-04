@@ -20,52 +20,49 @@ class FormValidation {
     });
   };
 
-  _setEventListeners = () => {
-    const inputs = this._formSelector.querySelectorAll(this._inputSelector);
-
-    console.log(inputs);
+  _setEventListeners = (form) => {
+    const inputs = Array.from(form.querySelectorAll(this._inputSelector));
+    //console.log(inputs);
     inputs.forEach((input) => {
-      input.addEventListener("input", validation);
+      input.addEventListener("input", () => {
+        this._validation(input);
+      });
     });
   };
 
-  _validation() {
+  _validation(input) {
     let allInputs = true;
+    console.log(input);
+    const span = input.closest(".popup__field").querySelector(this._inputErrorClass); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
 
-    inputs.forEach((input) => {
-      const span = input.closest(".popup__field").querySelector(this._inputErrorClass); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
-      const disabledSaveButton = document.querySelector(this._inactiveButtonClass);
+    const disabledSaveButton = document.querySelector(this._inactiveButtonClass);
 
-      if (
-        input.value.length < input.getAttribute("minlength") ||
-        input.value.length > input.getAttribute("maxlength")
-      ) {
-        span.classList.add("popup__message-error-display");
-        span.textContent = "Por favor, rellena este campo.";
+    if (input.value.length < input.getAttribute("minlength") || input.value.length > input.getAttribute("maxlength")) {
+      span.classList.add("popup__message-error-display");
+      span.textContent = "Por favor, rellena este campo.";
 
-        allInputs = false;
+      allInputs = false;
 
-        if (input.type == "url") {
-          span.textContent = "Por favor, introduce una direccion web.";
-        }
-      } else {
-        span.classList.remove("popup__message-error-display");
+      if (input.type == "url" && !urlPattern.test(input.value)) {
+        span.textContent = "Por favor, introduce una direccion web.";
       }
-    });
+    } else {
+      span.classList.remove("popup__message-error-display");
+    }
 
+    const saveButton = document.querySelector(this._submitButtonSelector);
     if (allInputs) {
       saveButton.disabled = false;
-      createButton.disabled = false;
+      // createButton.disabled = false;
       saveButton.classList.remove(this._inactiveButtonClass);
     } else {
       saveButton.disabled = true;
-      createButton.disabled = true;
+      // createButton.disabled = true;
       saveButton.classList.add(this._inactiveButtonClass);
     }
   }
 
   enableValidation = () => {
-    console.log(this._formSelector);
     const formList = Array.from(document.querySelectorAll(this._formSelector));
 
     console.log(formList);
@@ -73,7 +70,7 @@ class FormValidation {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
       });
-      _setEventListeners(form);
+      this._setEventListeners(form);
       //ocultar el error
       //inactiar el boton
     });
