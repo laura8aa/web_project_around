@@ -43,7 +43,7 @@ class FormValidation {
 
       allInputs = false;
 
-      if (input.type == "url" && !urlPattern.test(input.value)) {
+      if (input.type == "url") {
         span.textContent = "Por favor, introduce una direccion web.";
       }
     } else {
