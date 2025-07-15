@@ -1,6 +1,6 @@
 //contendrá los controladores de eventos y la función que abre/cierra las ventanas modales.
-import card from "./card.js";
-
+import card from "./Card.js";
+import { api } from "./Api.js";
 const editInfo = document.getElementById("profile-info");
 const editName = document.getElementById("name");
 const editAbout = document.getElementById("about");
@@ -15,18 +15,47 @@ const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardsContainer = document.getElementById("elements");
 
+//debe estar utils import export
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    alt: "Valle de Yosemite",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    alt: "Lago Louise",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    alt: "Montañas Calvas",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    alt: "Latemar",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    alt: "Parque Nacional de la Vanoise",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    alt: "Lago di Braies",
+  },
+];
+
 //function for edit button
-function save(e) {
+/*function save(e) {
   e.preventDefault();
   editProfileName.textContent = editName.value;
   editInfo.textContent = editAbout.value;
   closePopUp(e);
-}
-
-//function to open popups
-function openPopUp() {
-  popUps.classList.add("popup__visible");
-}
+}*/
 
 function openPopUpPerson() {
   editName.value = editProfileName.textContent;
@@ -54,26 +83,17 @@ function openPopUpImage(data) {
   popUpCaption.textContent = data.name;
 }
 
-function closePopUp(e) {
-  const popUp = e.target.closest(".popup");
-  popUp.classList.remove("popup__visible");
-}
-
-//function to close with esc key
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    const activePopUp = document.querySelector(".popup__visible");
-    activePopUp.classList.remove("popup__visible");
-  }
-});
-
 saveButton.addEventListener("click", save);
 
+const closePopUp = document.querySelector(".popup__close-button");
+
 //function for add button
+
 function add(e) {
   e.preventDefault();
   let name = editTitle.value;
   let link = editAttach.value;
+  api.addCard(name, link);
   renderCard({ name, link }, cardsContainer);
   closePopUp(e);
 }
@@ -82,4 +102,4 @@ function add(e) {
 // evt.preventDefault();
 //});
 
-export { openPopUpPerson, openPopUpPlace, renderCard, openPopUpImage, closePopUp, add, save };
+export { openPopUpPerson, openPopUpPlace, renderCard, openPopUpImage, closePopUp, add, initialCards };

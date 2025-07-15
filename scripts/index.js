@@ -1,39 +1,12 @@
-import card from "./card.js";
+import Card from "./Card.js";
 import FormValidation from "./FormValidation.js";
-import { openPopUpPerson, openPopUpPlace, renderCard, add, save } from "./utils.js";
-
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-    alt: "Valle de Yosemite",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-    alt: "Lago Louise",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-    alt: "Montañas Calvas",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-    alt: "Latemar",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-    alt: "Parque Nacional de la Vanoise",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-    alt: "Lago di Braies",
-  },
-];
+import { openPopUpPerson, openPopUpPlace, renderCard, add, initialCards } from "./Utils.js";
+import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./popupWithImage.js";
+import UserInfo from "./userInfo.js";
+import { api } from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 const editButton = document.getElementById("edit-button"); //document.querySelector("#edit-button"")
 const popUps = document.querySelectorAll(".popup");
@@ -52,14 +25,40 @@ const cardsContainer = document.getElementById("elements");
 const saveButton = document.querySelector(".popup__save-button");
 const createButton = document.getElementById("create");
 
-//arreglo y objeto es casi casi lo mismo
+const popUpImageForm = new PopupWithImage("#popup__image");
 
+const UserInfoEdit = new UserInfo("#name");
+
+const popupDeleteConfirmation = new PopupWithConfirmation("#popup__confirmation");
+
+//popUpImageForm.open();
+//const t1 = new PopupWithForm("#popup__person"); //le quitan a index.js y separas responsabilidades
+//t1.setEventListeners();
+//t1.openPopUp(); //tarea en el click del boton del lapicito
+//tarea el otro boton abra el popup de la carta pero ya lase popupWithForm
+//arreglo y objeto es casi casi lo mismo
+/*
 initialCards.forEach((element) => {
   renderCard(element, cardsContainer);
+});*/
+
+editButton.addEventListener("click", () => {
+  //constructor(popupSelector, handleFormSubmit)
+  const popUpEdit = new PopupWithForm("#popup__person", (data) => {
+    console.log(data);
+    UserInfoEdit.setUserInfo(data);
+  });
+  popUpEdit.setEventListeners();
+  popUpEdit.openPopUp();
 });
 
-editButton.addEventListener("click", openPopUpPerson);
-addButton.addEventListener("click", openPopUpPlace);
+addButton.addEventListener("click", () => {
+  const popUpAdd = new PopupWithForm("#popup__new-place", () => {
+    add(); //hace el callback
+  });
+  popUpAdd.setEventListeners();
+  popUpAdd.openPopUp();
+});
 
 const validationConfig = {
   inputSelector: ".popup__input",
@@ -72,46 +71,47 @@ const validationConfig = {
 const profileFormValidation = new FormValidation(validationConfig, "#popup__form_profile");
 const newPlaceFormValidation = new FormValidation(validationConfig, "#popup__new-place");
 
+const createCard = (data) => {
+  const link = data.link;
+  const name = data.name;
+  return new Card(
+    data,
+    "#cardtemplate",
+    () => {
+      popUpImageForm.open(link, name);
+    },
+    () => {
+      popupDeleteConfirmation.openPopUp();
+    }
+  ).setProperties();
+};
+
+api.getInitialCards().then((res) => {
+  const cardList = new Section(
+    {
+      items: res,
+      renderer: function renderCard(data) {
+        cardList.addItem(createCard(data));
+      },
+    },
+    "#elements"
+  );
+  cardList.rendererItems();
+});
+
+api.getUser().then((res) => {
+  UserInfoEdit.setUserInfo(res);
+  console.log(res);
+});
+
 //boton de inicio de la clase
 profileFormValidation.enableValidation();
 newPlaceFormValidation.enableValidation();
 
-//function to open popups
-function openPopUp() {
-  popUps.classList.add("popup__visible");
-}
-
-function closePopUp(e) {
-  const popUp = e.target.closest(".popup");
-  popUp.classList.remove("popup__visible");
-}
 /* Toggle the "liked" class which changes the color
 function like() {
   like.styleBackgroundColor = "black";
 }*/
 
-//function to close popups
-popUps.forEach((popup) => {
-  const closeButton = popup.querySelector(".popup__close-button");
-
-  closeButton.addEventListener("click", () => {
-    popup.classList.remove("popup__visible");
-  });
-
-  //function to close popup outside the popup
-  popup.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      popup.classList.remove("popup__visible");
-    }
-  });
-});
-saveButton.addEventListener("click", save);
+/*saveButton.addEventListener("click", save);*/
 createButton.addEventListener("click", add);
-
-//function to close with esc key
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    const activePopUp = document.querySelector(".popup__visible");
-    activePopUp.classList.remove("popup__visible");
-  }
-});

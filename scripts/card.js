@@ -10,12 +10,18 @@
               </div>
             </div>
           </template> */
-import { openPopUpImage, closePopUp } from "./utils.js";
-class card {
-  constructor(data, cardSelector) {
+import { api } from "./Api.js";
+
+class Card {
+  constructor(data, cardSelector, handleImageClick, handleDeleteClick) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = document.querySelector(cardSelector);
+    this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
+
+    // console.log(this._handleDeleteClick);
   }
   setProperties() {
     const cardTemplate = this._cardSelector.content.querySelector(".elements__card"); //content inside template
@@ -23,9 +29,17 @@ class card {
     const cardTitle = cardElement.querySelector(".elements__title");
     const likeButton = cardElement.querySelector(".elements__like-button");
     const cardImg = cardElement.querySelector(".elements__card-photo");
-    const trashButton = cardElement.querySelector(".elements__trash-button");
 
-    cardImg.addEventListener("click", () => openPopUpImage({ name: this._name, link: this._link }));
+    const trashButton = cardElement.querySelector(".elements__trash-button");
+    trashButton.addEventListener("click", () => {
+      this._handleDeleteClick();
+    });
+
+    if (this._data.isLiked) {
+      likeButton.classList.toggle("element__like-button_is-active");
+    }
+
+    cardImg.addEventListener("click", () => this._handleImageClick(this._name, this._link));
 
     //function to delete each card
     cardImg.src = this._link;
@@ -36,6 +50,12 @@ class card {
 
     //function to like a card
     likeButton.addEventListener("click", () => {
+      api
+        .likeCard(this._data) /*/llamada al api*/
+        .then((rest) => {
+          /*then manejar una rta asincrona(se necesita un callback funcion q se pasa como parametro rest es la rta del api*/
+          this._data = rest; //se actualiza la info de la carta
+        });
       likeButton.classList.toggle("element__like-button_is-active");
     });
     return cardElement;
@@ -45,14 +65,14 @@ class card {
 /*initialCards.forEach((data) => {
   renderCard(data, cardsContainer);
 });*/
-
+/*
 function renderCard(data, cardsContainer) {
   cardsContainer.prepend(getCardElement(data));
-}
+}*/
 
 // Toggle the "liked" class which changes the color
 function like() {
   like.styleBackgroundColor = "black";
 }
 
-export default card;
+export default Card;
