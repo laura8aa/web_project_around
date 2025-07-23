@@ -15,23 +15,29 @@ import { api } from "./Api.js";
 class Card {
   constructor(data, cardSelector, handleImageClick, handleDeleteClick) {
     this._data = data;
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = document.querySelector(cardSelector);
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
   }
+
+  removeCard = () => {
+    this._cardElement.remove();
+  };
+
   setProperties() {
     const cardTemplate = this._cardSelector.content.querySelector(".elements__card"); //content inside template
-    const cardElement = cardTemplate.cloneNode(true);
-    const cardTitle = cardElement.querySelector(".elements__title");
-    const likeButton = cardElement.querySelector(".elements__like-button");
-    const cardImg = cardElement.querySelector(".elements__card-photo");
+    this._cardElement = cardTemplate.cloneNode(true);
+    const cardTitle = this._cardElement.querySelector(".elements__title");
+    const likeButton = this._cardElement.querySelector(".elements__like-button");
+    const cardImg = this._cardElement.querySelector(".elements__card-photo");
 
-    const trashButton = cardElement.querySelector(".elements__trash-button");
+    const trashButton = this._cardElement.querySelector(".elements__trash-button");
     trashButton.addEventListener("click", () => {
       //NECESITAMOS PREGUNTAR SI ESTAMOS SEGUROS
-      this._handleDeleteClick(); //BORRA LA CARTA DIRECTO
+      this._handleDeleteClick(this._id); //BORRA LA CARTA DIRECTO
     });
 
     if (this._data.isLiked) {
@@ -57,7 +63,7 @@ class Card {
         });
       likeButton.classList.toggle("element__like-button_is-active");
     });
-    return cardElement;
+    return this._cardElement;
   }
 }
 

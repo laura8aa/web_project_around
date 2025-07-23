@@ -89,6 +89,8 @@ const closePopUp = document.querySelector(".popup__close-button");
 
 //function for add button
 
+//funcionalidad para agregar carta
+
 function add(e) {
   e.preventDefault();
   let name = editTitle.value;

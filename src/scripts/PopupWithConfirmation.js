@@ -27,7 +27,6 @@ class PopupWithConfirmation extends Popup {
     this._inputList.forEach((element) => {
       FormValues[element.id] = element.value;
     });
-    console.log(FormValues, "FormValues");
     return FormValues;
   }
 
@@ -40,8 +39,9 @@ class PopupWithConfirmation extends Popup {
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       this._handleFormSubmit();
-      super.setEventListeners();
     });
+
+    super.setEventListeners();
   }
 
   setSubmitAction(action) {

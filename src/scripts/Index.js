@@ -83,11 +83,22 @@ const createCard = (data) => {
     () => {
       popUpImageForm.open(link, name);
     },
-    () => {
+
+    //API
+    //1.- Eliminar la carta de la API
+    //2.- Y SI SE ELIMINA CORRECTAMENTE (200 ok) Eliminar la carta del DOM
+    //
+    (id, card) => {
       popupDeleteConfirmation.openPopUp();
-      popupDeleteConfirmation.setSubmitAction(() => {
-        console.log("Eliminar la cardta de la API");
-        api.deleteCard(id);
+      popupDeleteConfirmation.setSubmitAction(async () => {
+        console.log("Eliminar la carta de la API");
+        try {
+          await api.deleteCard(id);
+          card.removeCard();
+          popupDeleteConfirmation.close();
+        } catch (error) {
+          console.error("No se pudo eliminar la carta", error);
+        }
       });
     }
   ).setProperties();

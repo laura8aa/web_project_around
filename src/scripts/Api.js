@@ -45,12 +45,12 @@ class Api {
         return res;
       });
   }
-  addCard(link) {
+  addCard(name, link) {
     //esto es para crear una nueva carta
     return fetch(this.baseURL + "/cards", {
       headers: this.headers,
       method: "POST",
-      body: JSON.stringify({ link }), //lugar donde se manda la info. con stringify todo lo convierte en string. Formato que entiende el backend
+      body: JSON.stringify({ name, link }), //lugar donde se manda la info. con stringify todo lo convierte en string. Formato que entiende el backend
     })
       .then((res) => {
         if (!res.ok) {
