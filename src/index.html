@@ -112,6 +112,7 @@
         <button id="create" class="popup__save-button" type="submit">Crear</button>
       </form>
     </div>
+
     <div class="popup" id="popup__image">
       <div class="popup__image">
         <button type="button" class="popup__close-button" id="button-close">
@@ -121,17 +122,40 @@
         <p id="popup__caption" class="popup__caption"></p>
       </div>
     </div>
+
     <div class="popup" id="popup__confirmation">
-      <form class="popup__form" novalidate>
-        <fieldset class="popup__fieldset">
-          <button type="button" class="popup__close-button">
-            <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
-          </button>
-          <h2 class="popup__title">¿Estás seguro?</h2>
-        </fieldset>
-        <button id="si" class="popup__save-button" type="submit">si</button>
+      <form class="popup__form">
+        <button type="button" class="popup__close-button">
+          <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+        </button>
+        <h2 class="popup__title">¿Estás seguro?</h2>
+        <button id="si" class="popup__confirmation-button" type="button">si</button>
       </form>
     </div>
+
+    <div class="popup" id="popup__cambiarfoto">
+      <form class="popup__form" id="popup__form_profile" novalidate>
+        <fieldset class="popup__fieldset">
+          <button type="button" class="popup__close-button" id="close-button">
+            <img src="./images/Close Icon.png" alt="close button" class="popup__close-icon" />
+          </button>
+          <h2 class="popup__title">Cambiar foto de perfil</h2>
+          <label class="popup__field">
+            <input
+              type="text"
+              class="popup__input"
+              placeholder="https://somewebsite.com/someimage.jpg"
+              id="cambiar__foto"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+          </label>
+        </fieldset>
+        <button id="save" class="popup__save-button" type="submit">Guardar</button>
+      </form>
+    </div>
+
     <template id="cardtemplate">
       <div class="elements__card">
         <img class="elements__card-photo" src="#" alt="" />

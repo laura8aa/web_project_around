@@ -20,8 +20,6 @@ class Card {
     this._cardSelector = document.querySelector(cardSelector);
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
-
-    // console.log(this._handleDeleteClick);
   }
   setProperties() {
     const cardTemplate = this._cardSelector.content.querySelector(".elements__card"); //content inside template
@@ -32,7 +30,8 @@ class Card {
 
     const trashButton = cardElement.querySelector(".elements__trash-button");
     trashButton.addEventListener("click", () => {
-      this._handleDeleteClick();
+      //NECESITAMOS PREGUNTAR SI ESTAMOS SEGUROS
+      this._handleDeleteClick(); //BORRA LA CARTA DIRECTO
     });
 
     if (this._data.isLiked) {
@@ -44,9 +43,9 @@ class Card {
     //function to delete each card
     cardImg.src = this._link;
     cardTitle.textContent = this._name;
-    trashButton.addEventListener("click", (evt) => {
+    /* trashButton.addEventListener("click", (evt) => {
       evt.target.closest(".elements__card").remove();
-    });
+    });*/
 
     //function to like a card
     likeButton.addEventListener("click", () => {

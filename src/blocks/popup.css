@@ -173,6 +173,17 @@
   border-radius: 2px;
   color: #000000;
 }
+.popup__confirmation-button {
+  width: 358px;
+  height: 50px;
+  margin: auto;
+  color: #c4c4c4;
+  border-radius: 2px;
+  background-color: #000000;
+  margin: 36px;
+  font-family: Inter;
+  font-size: 18px;
+}
 @media screen and (max-width: 320px) {
   .popup {
     position: absolute;

@@ -18,7 +18,8 @@ class PopupWithConfirmation extends Popup {
     super(popupSelector);
     this._popupForm = this._popupSelector.querySelector(".popup__form");
     this._inputList = this._popupForm.querySelectorAll(".popup__input");
-    this._handleFormSubmit = handleFormSubmit;
+
+    this._id = null;
   }
   //this._popupSelector = document.querySelector(popupSelector);
   _getInputValues() {
@@ -30,29 +31,46 @@ class PopupWithConfirmation extends Popup {
     return FormValues;
   }
 
+  //EL SUBMIT PODRAS HACER DOS COSAS; DEPENDIENDO QUIEN ABRA
+  //EL POPUP
+  //1.-SI EL CLICK FUE EN LA BASURITA, DEBERA ELIMINAR UNA CARTA
+  //2.-SI EL CLICK FUE EN EL GUARDAR, DEBERA ACTUALIZAR EL USUARIO
+
   setEventListeners() {
     this._popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this._handleFormSubmit();
+      super.setEventListeners();
+    });
+  }
+
+  setSubmitAction(action) {
+    this._handleFormSubmit = action;
+  }
+
+  /*otra alternativa
+
+  this._popupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
       const values = this._getInputValues();
       this._handleFormSubmit(this._getInputValues());
       api.editUser(values.name, values.about);
       console.log(this._getInputValues);
       this._closePopUp(e);
     });
-    super.setEventListeners();
-  }
-
-  /*otra alternativa
   this._popupForm.addEventListener("submit", () => {
     this._handleFormSubmit(this._popupform.querySelector("la clase del input"));
   });
   super.setEventListeners();*/
 
-  openPopUp() {
+  openPopUp(id) {
     super.openPopUp();
+    this._id = id;
   }
 
   close() {
     super._closePopUp();
+    console.log(this._id);
   }
 }
 

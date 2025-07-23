@@ -30,6 +30,7 @@ const popUpImageForm = new PopupWithImage("#popup__image");
 const UserInfoEdit = new UserInfo("#name");
 
 const popupDeleteConfirmation = new PopupWithConfirmation("#popup__confirmation");
+popupDeleteConfirmation.setEventListeners(); //esto manda llamar al evento de event listener
 
 //popUpImageForm.open();
 //const t1 = new PopupWithForm("#popup__person"); //le quitan a index.js y separas responsabilidades
@@ -74,6 +75,8 @@ const newPlaceFormValidation = new FormValidation(validationConfig, "#popup__new
 const createCard = (data) => {
   const link = data.link;
   const name = data.name;
+  const id = data._id;
+  console.log(data);
   return new Card(
     data,
     "#cardtemplate",
@@ -82,6 +85,10 @@ const createCard = (data) => {
     },
     () => {
       popupDeleteConfirmation.openPopUp();
+      popupDeleteConfirmation.setSubmitAction(() => {
+        console.log("Eliminar la cardta de la API");
+        api.deleteCard(id);
+      });
     }
   ).setProperties();
 };

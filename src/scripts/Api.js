@@ -64,11 +64,24 @@ class Api {
   }
   //INTENTO 1LIKE
   likeCard(card) {
-    //esto es para like a card
+    //metodo para like a card
     return fetch(this.baseURL + "/cards/" + card._id + "/likes", {
       headers: this.headers,
       method: card.isLiked ? "DELETE" : "PUT",
     })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject("error");
+        }
+        return res.json();
+      })
+      .then((res) => {
+        return res;
+      });
+  }
+  deleteCard(cardId) {
+    //metodo para borrar carta
+    return fetch(this.baseURL + "/cards/" + cardId, { headers: this.headers, method: "DELETE" }) //fetch metodo nativo de js
       .then((res) => {
         if (!res.ok) {
           return Promise.reject("error");
