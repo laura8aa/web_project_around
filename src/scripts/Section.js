@@ -14,8 +14,8 @@ class Section {
 };*/
     this._containerSelector = document.querySelector(containerSelector); //el HTML
   }
-  rendererItems() {
-    this._items.forEach((item) => {
+  rendererItems(items) {
+    items.forEach((item) => {
       this._renderer(item); /*
       cardList.addItem(createCard(data));
     }, */

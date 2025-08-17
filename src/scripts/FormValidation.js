@@ -22,7 +22,7 @@ class FormValidation {
 
   _setEventListeners = (form) => {
     const inputs = Array.from(form.querySelectorAll(this._inputSelector));
-    //console.log(inputs);
+
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._validation(input);
@@ -32,7 +32,7 @@ class FormValidation {
 
   _validation(input) {
     let allInputs = true;
-    console.log(input);
+
     const span = input.closest(".popup__field").querySelector(this._inputErrorClass); //TE IDENTIFICA LA CLASE MAS CERCANA HACIA ABAJO (SOLO UNA);
 
     const disabledSaveButton = document.querySelector(this._inactiveButtonClass);
@@ -65,7 +65,6 @@ class FormValidation {
   enableValidation = () => {
     const formList = Array.from(document.querySelectorAll(this._formSelector));
 
-    console.log(formList);
     formList.forEach((form) => {
       form.addEventListener("submit", (event) => {
         event.preventDefault();

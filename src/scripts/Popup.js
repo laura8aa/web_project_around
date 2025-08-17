@@ -13,7 +13,6 @@ export class Popup {
   //function to open popups
   openPopUp() {
     this._popupSelector.classList.add("popup__visible");
-    console.log("Se copio todo el OpenPopup");
   }
 
   _closePopUp(e) {
@@ -22,22 +21,21 @@ export class Popup {
   }
 
   //function to close with esc key
-  _handleEscClose() {
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        const activePopUp = document.querySelector(".popup__visible");
-        activePopUp.classList.remove("popup__visible");
-      }
-    });
+  _handleEscClose(event) {
+    if (event.key === "Escape") {
+      const activePopUp = document.querySelector(".popup__visible");
+      activePopUp.classList.remove("popup__visible");
+    }
   }
 
   //function to close popups
   setEventListeners() {
-    console.log(this._popupSelector);
     const closeButton = this._popupSelector.querySelector(".popup__close-button");
     closeButton.addEventListener("click", (e) => {
       this._closePopUp(e);
-      console.log("click close");
+    });
+    document.addEventListener("keydown", (event) => {
+      this._handleEscClose(event);
     });
 
     //function to close popup outside the popup

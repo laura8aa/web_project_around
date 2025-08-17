@@ -45,7 +45,8 @@ class Api {
         return res;
       });
   }
-  addCard(name, link) {
+  addCard({ name, link }) {
+    console.log("DENTRO DE API:", name, link);
     //esto es para crear una nueva carta
     return fetch(this.baseURL + "/cards", {
       headers: this.headers,
@@ -62,7 +63,7 @@ class Api {
         return res;
       });
   }
-  //INTENTO 1LIKE
+
   likeCard(card) {
     //metodo para like a card
     return fetch(this.baseURL + "/cards/" + card._id + "/likes", {
@@ -92,8 +93,24 @@ class Api {
         return res;
       });
   }
+  //probando para editar imagen
+  editImage(avatar) {
+    return fetch(this.baseURL + "/users/me/avatar", {
+      headers: this.headers,
+      method: "PATCH",
+      body: JSON.stringify({ avatar }), //lugar donde se manda la info
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject("error");
+        }
+        return res.json();
+      })
+      .then((res) => {
+        return res;
+      });
+  }
 }
-
 export const api = new Api(
   {
     /*headers*/

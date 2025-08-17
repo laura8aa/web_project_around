@@ -15,7 +15,6 @@ const editTitle = document.getElementById("title");
 const editAttach = document.getElementById("attach");
 const cardsContainer = document.getElementById("elements");
 
-//debe estar utils import export
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -57,6 +56,7 @@ const initialCards = [
   closePopUp(e);
 }*/
 
+/*
 function openPopUpPerson() {
   editName.value = editProfileName.textContent;
   editAbout.value = editInfo.textContent;
@@ -64,16 +64,19 @@ function openPopUpPerson() {
   saveButton.disabled = true;
   saveButton.classList.add("popup__save-button-disabled");
   createButton.disabled = true;
-}
+}*/
 
 function openPopUpPlace() {
   popUpPlace.classList.add("popup__visible");
 }
 
+/*
 function renderCard(data, cardsContainer) {
   const x1 = new card(data, "#cardtemplate");
   cardsContainer.prepend(x1.setProperties());
-}
+}*/
+
+/*
 function openPopUpImage(data) {
   popUpImage.classList.add("popup__visible");
   const popUpCaption = popUpImage.querySelector(".popup__caption");
@@ -81,16 +84,15 @@ function openPopUpImage(data) {
   Image.src = data.link;
   Image.alt = data.name;
   popUpCaption.textContent = data.name;
-}
+}*/
 
 saveButton.addEventListener("click", save);
 
 const closePopUp = document.querySelector(".popup__close-button");
 
-//function for add button
-
 //funcionalidad para agregar carta
 
+/*
 function add(e) {
   e.preventDefault();
   let name = editTitle.value;
@@ -98,10 +100,10 @@ function add(e) {
   api.addCard(name, link);
   renderCard({ name, link }, cardsContainer);
   closePopUp(e);
-}
+}*/
 
 //formElement.addEventListener("submit", function (evt) {
 // evt.preventDefault();
 //});
 
-export { openPopUpPerson, openPopUpPlace, renderCard, openPopUpImage, closePopUp, add, initialCards };
+export { openPopUpPlace, closePopUp, initialCards };

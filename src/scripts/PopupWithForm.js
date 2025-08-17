@@ -10,8 +10,6 @@ this handleformSubmit es sinonimo de setUserInfo({ name, job }) {
   }*/
 
 import Popup from "./Popup.js";
-import { openPopUpPerson } from "./Utils.js";
-import { api } from "./Api.js";
 
 class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
@@ -26,17 +24,16 @@ class PopupWithForm extends Popup {
     this._inputList.forEach((element) => {
       FormValues[element.id] = element.value;
     });
-    console.log(FormValues, "FormValues");
+
     return FormValues;
   }
 
-  //este lo hiciste para editar usuario
+  //este lo hice para editar usuario
   setEventListeners() {
     this._popupForm.addEventListener("submit", (e) => {
       const values = this._getInputValues();
-      this._handleFormSubmit(this._getInputValues());
-      api.editUser(values.name, values.about);
-      console.log(this._getInputValues);
+      this._handleFormSubmit(values);
+      //api.editUser(values.name, values.about);
       this._closePopUp(e);
     });
     super.setEventListeners();
